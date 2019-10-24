@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id "com.palantir.graal" version "0.6.0-27-ge8430f6"
+}
+
+group 'self.edu.orovp.graal'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+dependencies {
+    compile 'info.picocli:picocli:4.0.4'
+    annotationProcessor 'info.picocli:picocli-codegen:4.0.4'
+}
+
+compileJava {
+    options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
+}
+
+graal {
+    mainClass 'self.edu.orovp.graal.cli.Main'
+    outputName 'get-started-cli'
+}
